@@ -1,0 +1,61 @@
+<html>
+<head>
+
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='css/style.css')}}">
+    <script src="{{ url_for( 'static', filename='js/audio.min.js')}}"></script>
+    <script>
+      audiojs.events.ready(function() {
+        audiojs.createAll();
+      });
+    </script>
+</head>
+<body>
+<div class="block">
+    <table width="100%" cellpadding="5">
+        <tr>
+            <td align="center" width="100%">
+                <h2>Музыкальное произведение успешно сгенерировано!</h2>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <audio preload="auto">
+                    <source src="{{ url_for( 'static', filename='output.wav')}}"/>
+                </audio>
+                 <!--<audio src="output.wav" preload="auto"></audio>-->
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <form action="{{ url_for('return_files') }}">
+                    <input type=submit value="скачать" class="btn btn-secondary">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <form action="{{ url_for('again') }}">
+                    <input type=submit value="Попробовать снова!" class="btn btn-secondary">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h4>Текст</h4>
+    <div><p>{{ text }} </p></div>
+    <!--<h4>Всего слов: {{ tokensCount}}</h4>-->
+    <!--<h4>Уникальзых слов: {{ uniqueWords }}</h4>-->
+    <h4>Слова из текста</h4>
+    <div>
+        {% for i in range(tokensCount) %}
+        {{ tokens[i]}}
+        {% if i < tokensCount-1 %}
+        {{', '}}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

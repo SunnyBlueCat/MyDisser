@@ -1,0 +1,11 @@
+.txt {
+    width: 100%;
+}
+.block{
+    width: 60%;
+    margin-left: 20%; /* Отступ слева */
+    padding: 20px; /* Поля вокруг текста */
+}
+textarea{
+    font-size: x-large;
+}
